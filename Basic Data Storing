@@ -11,13 +11,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
+        //objectType        //objectName                                    //name                         //mode
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.anilcelik.datastoring", Context.MODE_PRIVATE);
-
+                                                                        /* meaning of MODE_PRIVATE is that our created object
+                                                                        only can be used in this particular program  and that
+                                                                        object is storing all of the data that are entered */
         int age, savedAge;
 
         age = 40;
-        sharedPreferences.edit().putInt("userAge", age).apply();
+        sharedPreferences.edit().putInt("userAge", age).apply(); //editing data, .apply() method is saving the data
         savedAge = sharedPreferences.getInt("userAge", 0);
         System.out.println("previous saved value: " + savedAge); //40
 
@@ -25,6 +28,5 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences.edit().putInt("userAge", age).apply();
         savedAge = sharedPreferences.getInt("userAge",0);
         System.out.println("updated saved data: " + savedAge); //41
-
     }
 }
