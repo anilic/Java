@@ -22,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
         age = 40;
         sharedPreferences.edit().putInt("userAge", age).apply(); //editing data, .apply() method is saving the data
         savedAge = sharedPreferences.getInt("userAge", 0); //receiving saved data from object to the variable "savedAge"
-        System.out.println("previous saved value: " + savedAge); //40
+        System.out.println("previous saved value: " + savedAge); //output: 40
 
         age = 41;
         sharedPreferences.edit().putInt("userAge", age).apply();
         savedAge = sharedPreferences.getInt("userAge",0);
-        System.out.println("updated saved data: " + savedAge); //41
+        System.out.println("updated saved data: " + savedAge); //output: 41
     }
 }
