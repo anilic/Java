@@ -1,0 +1,30 @@
+package com.anilcelik.datastoring;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.anilcelik.datastoring", Context.MODE_PRIVATE);
+
+        int age, savedAge;
+
+        age = 40;
+        sharedPreferences.edit().putInt("userAge", age).apply();
+        savedAge = sharedPreferences.getInt("userAge", 0);
+        System.out.println("previous saved value: " + savedAge); //40
+
+        age = 41;
+        sharedPreferences.edit().putInt("userAge", age).apply();
+        savedAge = sharedPreferences.getInt("userAge",0);
+        System.out.println("updated saved data: " + savedAge); //41
+
+    }
+}
