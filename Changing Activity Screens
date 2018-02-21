@@ -1,0 +1,51 @@
+/* --- Main Activity --- */
+
+package com.anilcelik.intent;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void changeScene(View view1) /* First button's change onClick method */
+    {
+        Intent firstIntent = new Intent(getApplicationContext(), Main2Activity.class);
+        startActivity(firstIntent);
+    }
+}
+
+/* --- Main Activity --- */
+
+/* --- Second Activity --- */
+
+package com.anilcelik.intent;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+public class Main2Activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+    }
+
+    public void changeScene2(View view2) /* Second button's change button onClick method */
+    {
+        Intent secondIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(secondIntent);
+    }
+}
+
+/* --- Second Activity --- */
