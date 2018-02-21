@@ -28,5 +28,9 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences.edit().putInt("userAge", age).apply();
         savedAge = sharedPreferences.getInt("userAge",0);
         System.out.println("updated saved data: " + savedAge); //output: 41
+        
+        sharedPreferences.edit().remove("userAge").apply(); //deletes stored data
+        savedAge = sharedPreferences.getInt("userAge", 0);
+        System.out.println("deleted: " + savedAge);
     }
 }
