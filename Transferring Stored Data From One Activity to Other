@@ -21,10 +21,14 @@ public class MainActivity extends AppCompatActivity {
     public void changeScene(View view1)
     {
         userInput = (EditText) findViewById(R.id.editText);
-        Intent firstIntent = new Intent(getApplicationContext(), Main2Activity.class);
+        Intent firstIntent = new Intent(getApplicationContext(), Main2Activity.class); //passing data
         firstIntent.putExtra("input", userInput.getText().toString());
         startActivity(firstIntent);
     }
+    
+    /* In changeScene method, we need to pass our data with button's script which we are trying to change
+       the screen with, and we need to give this functionality before starting method of the script. */
+    
 }
 
 /* --- First Activity --- */
@@ -46,7 +50,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        TextView textView = (TextView) findViewById(R.id.textView);
+        TextView textView = (TextView) findViewById(R.id.textView); //receiving data from initial screen
         Intent intent = getIntent();
         String received = intent.getStringExtra("input");
         textView.setText(received);
