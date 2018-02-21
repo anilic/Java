@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeScene(View view1) /* First button's change onClick method */
     {
-        Intent firstIntent = new Intent(getApplicationContext(), Main2Activity.class);
-        startActivity(firstIntent);
+        Intent firstIntent = new Intent(getApplicationContext(), Main2Activity.class); /* (Source, Target Class) */
+        startActivity(firstIntent); /* startActivity is for running the intent */
     }
 }
 
