@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
             myDatabase.execSQL("CREATE TABLE IF NOT EXISTS musicians (name VARCHAR, age INT(2))");
             //VARCHAR:string:name
 
-            /* CREATING DATA */
+            /* --- CREATING DATA --- */
             //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES  ('James', 50)");
             //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES ('Lars', 55)"); //SUCCESS
             //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES  ('Kirk', 60)");
             //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES  ('Rob', 65)");
 
-            /* DELETING DATA */
+            /* --- DELETING DATA --- */
 
             /* Deletes specified data: */
             //myDatabase.execSQL("DELETE FROM musicians WHERE name LIKE  'J%'");
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             /* Deletes ALL data: */
             //myDatabase.execSQL("DELETE FROM  musicians");
 
-            /* UPDATING DATA */
+            /* --- UPDATING DATA --- */
 
             myDatabase.execSQL("UPDATE musicians SET age = 56 WHERE name = 'Lars'");
 
