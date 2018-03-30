@@ -23,7 +23,7 @@ class Pokemon
 	public double TakeDamage(double damage2) { return health - damage2; }
 }
 
-public class Person implements PersonInterface
+class Person implements PersonInterface
 {
 	public String name;
 	public int badgeIndex = 0;
@@ -95,7 +95,7 @@ class GymLeader extends Person
 	}
 }
 
-class MainClass
+public class Main
 {
 	public static void main(String[] args)
 	{
@@ -128,25 +128,21 @@ class MainClass
 		System.out.print("Select a Gym Leader: "); leaderIndex = reader.nextInt();
 		
 		System.out.println("You will fight against " + gymArray[leaderIndex].getName());
-		System.out.println("You will fight with " + trainer.getitsPokemon().getName() + " against " + gymArray[leaderIndex].getitsPokemon());
+		System.out.println("You will fight with " + trainer.getitsPokemon().getName() + " against " + gymArray[leaderIndex].getitsPokemon().getName());
 		
-		while(trainer.EndOfBattle())
+		while (trainer.EndOfBattle()) //FIX 
 		{
 			gymArray[leaderIndex].getitsPokemon().TakeDamage(trainer.getitsPokemon().getDamage());
-			
-			if(gymArray[leaderIndex].getitsPokemon().getHealth() <= 0)
-			{
-				gymArray[leaderIndex].WriteResult(false);
-				System.out.println("GymLeader" + gymArray[leaderIndex].getName() + " lost the battle.");
-				System.out.println("In " + trainer.region + ", Trainer" + trainer.name + " won the battle.");
-				System.out.println("You have now " + gymArray[leaderIndex].getBadgeType() + " badge.");
-				trainer.Badges[0] = gymArray[leaderIndex].getBadgeType();
-				break;
-			}
-			
 			trainer.getitsPokemon().TakeDamage(gymArray[leaderIndex].getitsPokemon().getDamage());
+			
+			if(trainer.getitsPokemon().getHealth() <= 0 || gymArray[leaderIndex].getitsPokemon().getHealth() <= 0)
+				break;
 		}
 		
-		gymArray[leaderIndex].WriteResult(true);	
+		boolean control = trainer.EndOfBattle();
+		
+		System.out.println(trainer.WriteResult(control));
+		System.out.println(gymArray[leaderIndex].WriteResult(control));
+		
 	}	
 }
