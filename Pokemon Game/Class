@@ -130,19 +130,30 @@ public class Main
 		System.out.println("You will fight against " + gymArray[leaderIndex].getName());
 		System.out.println("You will fight with " + trainer.getitsPokemon().getName() + " against " + gymArray[leaderIndex].getitsPokemon().getName());
 		
-		while (trainer.EndOfBattle()) //FIX 
+		while(trainer.EndOfBattle()) 
 		{
-			gymArray[leaderIndex].getitsPokemon().TakeDamage(trainer.getitsPokemon().getDamage());
-			trainer.getitsPokemon().TakeDamage(gymArray[leaderIndex].getitsPokemon().getDamage());
+			(gymArray[leaderIndex].getitsPokemon().TakeDamage(trainer.getitsPokemon().getDamage());
 			
-			if(trainer.getitsPokemon().getHealth() <= 0 || gymArray[leaderIndex].getitsPokemon().getHealth() <= 0)
+			if(gymArray[leaderIndex].getitsPokemon().getHealth() <= 0) 
+			{
+				System.out.println(gymArray[leaderIndex].WriteResult(false));
+				System.out.println("In "+ trainer.region + " Region, Trainer " + trainer.name + " won the battle.");
+				trainer.AddABadge(gymArray[leaderIndex].getBadgeType());
+				System.out.println("You have now " + (gymArray[leaderIndex]].badgeType + " Badge");
 				break;
+			}
+			
+			trainer.getItsPokemon().TakeDamage((gymArray[leaderIndex].getItsPokemon().getDamage());
+			
+			//System.out.println("One turn fighted");
 		}
 		
-		boolean control = trainer.EndOfBattle();
+		if(myTrainer.getitsPokemon().getHealth()<=0) 
+		{
+			System.out.println(gymArray[leaderIndex].WriteResult(true));
+			System.out.println("In "+ trainer.region + " Region, Trainer " + trainer.name +" lost the battle.");
+		}
 		
-		System.out.println(trainer.WriteResult(control));
-		System.out.println(gymArray[leaderIndex].WriteResult(control));
-		
-	}	
+			sc.close();
+	}		
 }
