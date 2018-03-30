@@ -1,0 +1,152 @@
+import java.util.Scanner;
+
+interface PersonInterface
+{
+	String WriteResult(boolean win);
+}
+
+class Pokemon
+{
+	public double health, damage;
+	public String name;
+	
+	public Pokemon(double health, double damage, String name)
+	{
+		this.health = health;
+		this.damage = damage;
+		this.name = name;
+	}
+	
+	public double getHealth() { return health; }
+	public double getDamage() { return damage; }
+	public String getName() { return name; }
+	public double TakeDamage(double damage2) { return health - damage2; }
+}
+
+public class Person implements PersonInterface
+{
+	public String name;
+	public int badgeIndex = 0;
+	
+	public Person(String name) { this.name = name; }
+	public String WriteResult(boolean win) { return name; }
+}
+
+class Trainer extends Person
+{
+	public String region;
+	public Pokemon itsPokemon;
+	public String Badges[] = new String[10];
+	
+	public Trainer(String name, String region)
+	{
+		super(name);
+		this.region = region;
+	}
+	
+	public Pokemon getitsPokemon() { return itsPokemon; }
+	public void setitsPokemon(Pokemon itsPokemon) { this.itsPokemon = itsPokemon; }
+	
+	public void AddABadge(String badge)
+	{
+		Badges[badgeIndex] = badge;
+		badgeIndex++;
+	}
+	
+	public boolean EndOfBattle()
+	{
+		if (itsPokemon.getHealth() <= 0)
+			return false;
+		else
+			return true;
+	}
+	
+	public String WriteResult(boolean win) 
+	{ 
+		if(win)
+			return name + "WON!";
+		else
+			return name + "LOST!";
+	}
+}
+
+class GymLeader extends Person
+{
+	public String badgeType;
+	public Pokemon itsPokemon;
+	
+	public GymLeader(String name, String badgeType, Pokemon itsPokemon)
+	{
+		super(name);
+		this.badgeType = badgeType;
+		this.itsPokemon = itsPokemon;
+	}
+	
+	public String getBadgeType() { return badgeType; }
+	public String getName() { return name; }
+	public Pokemon getitsPokemon() { return itsPokemon; }
+	
+	public String WriteResult(boolean win) 
+	{ 
+		if(win)
+			return "GymLeader" + name + "WON!";
+		else
+			return "GymLeader" + name + "LOST!";
+	}
+}
+
+class MainClass
+{
+	public static void main(String[] args)
+	{
+		Pokemon pokemonArray[] = new Pokemon[6];
+		GymLeader gymArray[] = new GymLeader[3];
+		
+		Scanner reader = new Scanner(System.in);
+		String name, region;
+		int pokeIndex, leaderIndex;
+		
+		pokemonArray[0] = new Pokemon(1000, 125, "Bulbasaur");
+		pokemonArray[1] = new Pokemon(1250, 150, "Charmeleon");
+		pokemonArray[2] = new Pokemon(750, 175, "Charizard");
+		pokemonArray[3] = new Pokemon(1500, 250, "Pikachu");
+		pokemonArray[4] = new Pokemon(500, 300, "Magneton");
+		pokemonArray[5] = new Pokemon(2000, 125, "Slowbro");
+		
+		gymArray[0] = new GymLeader("Brock", "Rock", pokemonArray[2]);
+		gymArray[1] = new GymLeader("Misty", "Water", pokemonArray[5]);
+		gymArray[2] = new GymLeader("Ash", "Electric", pokemonArray[3]);
+		
+		
+		System.out.print("Enter your name: "); name = reader.next();
+		System.out.print("Enter your region: "); region = reader.next();
+		
+		Trainer trainer = new Trainer(name, region);
+		
+		System.out.print("Select a Pokémon: "); pokeIndex = reader.nextInt();
+		trainer.setitsPokemon(pokemonArray[pokeIndex]);
+		System.out.print("Select a Gym Leader: "); leaderIndex = reader.nextInt();
+		
+		System.out.println("You will fight against " + gymArray[leaderIndex].getName());
+		System.out.println("You will fight with " + trainer.getitsPokemon().getName() + " against " + gymArray[leaderIndex].getitsPokemon());
+		
+		while(trainer.EndOfBattle())
+		{
+			gymArray[leaderIndex].getitsPokemon().TakeDamage(trainer.getitsPokemon().getDamage());
+			
+			if(gymArray[leaderIndex].getitsPokemon().getHealth() <= 0)
+			{
+				gymArray[leaderIndex].WriteResult(false);
+				System.out.println("GymLeader" + gymArray[leaderIndex].getName() + " lost the battle.");
+				System.out.println("In " + trainer.region + ", Trainer" + trainer.name + " won the battle.");
+				System.out.println("You have now " + gymArray[leaderIndex].getBadgeType() + " badge.");
+				trainer.Badges[0] = gymArray[leaderIndex].getBadgeType();
+				break;
+			}
+			
+			trainer.getitsPokemon().TakeDamage(gymArray[leaderIndex].getitsPokemon().getDamage());
+		}
+		
+		gymArray[leaderIndex].WriteResult(true);	
+	}	
+}
